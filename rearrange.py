@@ -1,23 +1,16 @@
 import random, sys
 
-list = ["adam", "megan", "caroline", "alan", "milad", "dani"]
 
-def rearrange(list):
-    random_index = random.randrange(len(list))
+def rearrange():
+    words_from_terminal = sys.argv[1:]
     counter = 100
     while counter > 0:
-        chosen_word = list.pop(random_index)
-        list.append(chosen_word)
+        random_index = random.randrange(len(words_from_terminal))
+        chosen_word = words_from_terminal.pop(random_index)
+        words_from_terminal.append(chosen_word)
         counter -= 1
-    result = ' '.join(list)
+    result = ' '.join(words_from_terminal)
     print(result)
 
 
-# def main(list):
-#     rearrange(list)
-
-
-# if __name__ == '__main__':
-#     params = sys.argv[1:]
-#     main(params)
-rearrange(list)
+rearrange()
