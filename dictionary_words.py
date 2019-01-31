@@ -9,10 +9,9 @@ def dictionary_words():
     file_name = '/usr/share/dict/words'
     with open(file_name) as file:
         defaultdict = file.read().split()
-        # print(k = int(sys.argv[1]))
         random_word_s = random.sample(defaultdict, k = int(sys.argv[1]))
-        str1 = ' '.join(random_word_s)
+        final_string = ' '.join(random_word_s)
 
-    print(str1)
+    print(final_string)
     
 dictionary_words()
