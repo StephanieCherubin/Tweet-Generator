@@ -13,4 +13,10 @@ scrammed
 The following text would be created:
 "The silly panda walked to the chandelier and then scrammed.'''
 
-  
+color = input("Enter a color: ")
+pluralNoun = input("Enter a plural noun: ")
+celebrity = input("Enter a celebrity: ")
+
+print("Roses are", color)
+print(pluralNoun + " are blue")
+print("I love", celebrity)
