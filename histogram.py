@@ -20,9 +20,17 @@ def histogram():
     print('Total word count: {}'.format(total_word_count))
     # use the above function to take frequency and place back in the dictionary
     final_dictionary = frequency(myList)
-    print('Final Dict: {}\n'.format(final_dictionary))
-    # print(final_dictionary.keys())
-    print('My List: {}'.format(myList))
+    print('Histogram Dictionary: {}\n'.format(final_dictionary))
+
+    list_of_tuples = []
+    for key, value in final_dictionary.iteritems():
+        list_of_tuples.append((key, value))
+    print('List of Tuples: ' + str(list_of_tuples))
+
+    list_of_lists = []
+    for key, value in final_dictionary.iteritems():
+        list_of_lists.append([key, value])
+    print(list_of_lists)
     text_file.close()
 histogram()
 
