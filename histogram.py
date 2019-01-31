@@ -18,6 +18,7 @@ def histogram():
     myList = list.split()
     total_word_count = len(myList)
     print('Total word count: {}'.format(total_word_count))
+    
     # use the above function to take frequency and place back in the dictionary
     final_dictionary = frequency(myList)
     print('Histogram Dictionary: {}\n'.format(final_dictionary))
