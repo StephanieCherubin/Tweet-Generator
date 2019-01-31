@@ -9,7 +9,6 @@ def frequency(words):
     return frequency_dictionary
 
 
-
 def histogram():
     # open this text file
     text_file = open("twelve_years.txt","r")
@@ -18,7 +17,7 @@ def histogram():
     myList = list.split()
     total_word_count = len(myList)
     print('Total word count: {}'.format(total_word_count))
-    
+
     # use the above function to take frequency and place back in the dictionary
     final_dictionary = frequency(myList)
     print('Histogram Dictionary: {}\n'.format(final_dictionary))
@@ -35,5 +34,3 @@ def histogram():
     text_file.close()
     
 histogram()
-
-
