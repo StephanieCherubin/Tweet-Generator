@@ -32,6 +32,7 @@ def histogram():
         list_of_lists.append([key, value])
     print(list_of_lists)
     text_file.close()
+    
 histogram()
 
 
