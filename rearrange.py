@@ -12,5 +12,5 @@ def rearrange():
     result = ' '.join(words_from_terminal)
     print(result)
 
-
-rearrange()
+if __name__ == "__main__":
+    rearrange()

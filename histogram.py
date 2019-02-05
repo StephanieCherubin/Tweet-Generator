@@ -34,4 +34,6 @@ def histogram():
     text_file.close()
     
     # you can use iteritems() or viewitems() instead of items()
-histogram()
+
+if __name__ == "__main__":
+    histogram()
