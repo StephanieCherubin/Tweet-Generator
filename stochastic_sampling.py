@@ -1,36 +1,43 @@
-def frequency(words):
-    frequency_dictionary = {}
+import random
 
-    for key in words:
-        if key in frequency_dictionary:
-            frequency_dictionary[key] += 1
-        else:
-            frequency_dictionary[key] = 1
-    return frequency_dictionary
+from histogram import frequency
 
+with open("dr-seuss.txt","r") as f:
+        myList = f.read().split(" ")
+        total_word_count = len(myList)
 
-# open this text file
-text_file = open("dr-seuss.txt","r")
-# read this text file and place items in a list to split
-list = text_file.read()
-myList = list.split()
-total_word_count = len(myList)
-# print('Total word count: {}'.format(total_word_count))
-# use the above function to take frequency and place back in the dictionary
-final_dictionary = frequency(myList)
-print('Final Dict: {}\n'.format(final_dictionary))
-# print(final_dictionary.keys())
-# print('My List: {}'.format(myList))
-
-text_file.close()
-
+        final_dictionary = frequency(myList)
+        # print('Final Dict: {}\n'.format(final_dictionary))
 
 def randomized_item(my_dict):
     for key, value in my_dict.items():
         probability = float(value) / total_word_count
-        print(key + " => " + str(probability))
+        # print('{} => {}'.format(key, probability))
 
 randomized_item(final_dictionary)
 
+#Sample words based on probablity
+# Run random function on list
 
-# Add cumulative probablity to probability
+def probabilistic_word_sampler():
+    random_number = random.randrange(8)
+#     print(random_number)
+    return(myList[random_number])
+
+print(probabilistic_word_sampler())
+
+
+# Run above function 10000 times
+# Create histogram from resulting word
+# make a function that runs your probabilistic_word_sampler 10,000
+def thousand_times():
+        counter = 10000
+        while counter > 0:
+                random_word = probabilistic_word_sampler()
+                print(myList[random_word])
+
+                counter -= 1
+
+# Make a new histogram that stores above function
+
+thousand_times()

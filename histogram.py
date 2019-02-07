@@ -1,3 +1,6 @@
+with open('twelve_years.txt', 'r') as f:
+    lines = f.read().split(" ")
+
 def frequency(words):
     frequency_dictionary = {}
 
@@ -8,32 +11,55 @@ def frequency(words):
             frequency_dictionary[key] = 1
     return frequency_dictionary
 
+# divide this into 3 functions        
 
-def histogram():
-    text_file = open("twelve_years.txt","r")
-    # read this text file and place items in a list to split
-    list = text_file.read()
-    myList = list.split()
-    # total_word_count = len(myList)
-    # print('Total word count: {}'.format(total_word_count))
+def dictogram():
+    final_dictionary = frequency(lines)
+    return 'Histogram Dictionary: {}\n'.format(final_dictionary)
 
-    # use the above function to take frequency and place back in the dictionary
-    final_dictionary = frequency(myList)
-    # print('Histogram Dictionary: {}\n'.format(final_dictionary))
 
-    list_of_tuples = []
+def list_of_tuples():
     # Tuples are immutable. It cannot be changed once created.
-    for key, value in final_dictionary.items():
-        list_of_tuples.append((key, value))
-    print('List of Tuples: ' + str(list_of_tuples))
+    list_of_tuples = []
 
-    list_of_lists = []
-    for key, value in final_dictionary.items():
-        list_of_lists.append([key, value])
-    print('List of Lists: ' + str(list_of_lists))
-    text_file.close()
+    for word in lines:
+        found = False 
+
+        for inner_list in list_of_tuples:
+            if word == inner_list[0]:
+                count = inner_list[1] + 1
+                list_of_tuples.remove(inner_list)
+                list_of_tuples.append((word, count))
+                found = True
+        
+        if not found:
+            list_of_tuples.append((word, 1))
     
-    # you can use iteritems() or viewitems() instead of items()
+    return 'Tuplegram: {}\n'.format(list_of_tuples)
+    
+
+def list_of_lists():
+    list_of_lists = []
+    for word in lines:
+        found = False 
+
+        for inner_list in list_of_lists:
+
+            if word == inner_list[0]:
+                count = inner_list[1] + 1
+                list_of_lists.remove(inner_list)
+                list_of_lists.append((word, count))
+                found = True
+        
+        if not found:
+            list_of_lists.append((word, 1))
+    
+    return 'Listogram: {}\n'.format(list_of_lists)
+
+
 
 if __name__ == "__main__":
-    histogram()
+    # print(dictogram())
+    print(list_of_tuples())
+    print(list_of_lists())
+
