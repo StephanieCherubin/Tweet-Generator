@@ -5,10 +5,12 @@ def frequency(words):
     frequency_dictionary = {}
 
     for key in words:
+        
         if key in frequency_dictionary:
             frequency_dictionary[key] += 1
         else:
             frequency_dictionary[key] = 1
+
     return frequency_dictionary
 
 # divide this into 3 functions        
@@ -60,6 +62,6 @@ def list_of_lists():
 
 if __name__ == "__main__":
     # print(dictogram())
-    print(list_of_tuples())
+    # print(list_of_tuples())
     print(list_of_lists())
 

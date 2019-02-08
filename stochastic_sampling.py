@@ -7,7 +7,7 @@ with open("dr-seuss.txt","r") as f:
         total_word_count = len(myList)
 
         final_dictionary = frequency(myList)
-        # print('Final Dict: {}\n'.format(final_dictionary))
+        print('Final Dict: {}\n'.format(final_dictionary))
 
 def randomized_item(my_dict):
     for key, value in my_dict.items():
