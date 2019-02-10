@@ -89,6 +89,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+*.pyc
 
 # Spyder project settings
 .spyderproject
@@ -102,3 +103,19 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+.dmypy.json
+dmypy.json
+
+### Python Patch ###
+.venv/
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+### VisualStudioCode Patch ###
+# Ignore all local history of files
+.history
