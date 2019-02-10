@@ -13,7 +13,6 @@ def frequency(words):
 
     return frequency_dictionary
 
-# divide this into 3 functions        
 
 def dictogram():
     final_dictionary = frequency(lines)
@@ -61,7 +60,8 @@ def list_of_lists():
 
 
 if __name__ == "__main__":
+    print(frequency(lines))
     # print(dictogram())
     # print(list_of_tuples())
-    print(list_of_lists())
+    # print(list_of_lists())
 
