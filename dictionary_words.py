@@ -23,6 +23,11 @@ def dictionary_words(num):
 
     print(final_string)
 
+# def main():
+#     num_words = int(sys.argv[1])
+#     dictionary = dictionary_words()
+#     print(create_random_sentence(dictionary, num_words))
+
 if __name__ == "__main__":
     dictionary_words(input())
-    
+
