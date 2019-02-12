@@ -18,7 +18,7 @@ def dictionary_words(num):
             randword = file_name[random_number]
             random_words.append(randword)
 
-            final_string = ' '.join(random_words)
+            final_string = ''.join(random_words)
             
 
     print(final_string)
