@@ -1,11 +1,15 @@
 from flask import Flask
+from dictionary_words import dictionary_words
 
 app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    return quote
+    variable = dictionary_words(12)
+    return variable
+
+    
 
 if __name__ == '__main__':
-    app.run()
+    hello_world()
     

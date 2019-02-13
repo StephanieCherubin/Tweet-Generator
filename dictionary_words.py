@@ -1,4 +1,4 @@
-import random, sys
+import random
 
 
 def dictionary_words(num):
@@ -14,7 +14,7 @@ def dictionary_words(num):
     
     output = ' '.join(random.sample(words_list, num)) + '.'
 
-    print(output.capitalize())
+    return output.capitalize()
 
 
 if __name__ == "__main__":
