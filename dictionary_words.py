@@ -7,27 +7,16 @@ def dictionary_words(num):
     pick random words
     return random words'''
 
-    random_words = list()
-
     file_name = '/usr/share/dict/words'
 
     with open(file_name) as file:
-        default_dict = file.read().split()
-        while int(num) > len(random_words):
-            random_number = random.randint(0,len(file_name)-1)
-            randword = file_name[random_number]
-            random_words.append(randword)
+        words_list =[line.strip() for line in file] 
+    
+    output = ' '.join(random.sample(words_list, num)) + '.'
 
-            final_string = ''.join(random_words)
-            
+    print(output.capitalize())
 
-    print(final_string)
-
-# def main():
-#     num_words = int(sys.argv[1])
-#     dictionary = dictionary_words()
-#     print(create_random_sentence(dictionary, num_words))
 
 if __name__ == "__main__":
-    dictionary_words(input())
+    dictionary_words(9)
 

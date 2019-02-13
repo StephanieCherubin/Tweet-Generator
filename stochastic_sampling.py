@@ -24,6 +24,7 @@ Run random function on list'''
     total = 0
     for key in final_dictionary:
         total += final_dictionary[key] 
+        
     random_number = random.randrange(total)
     number_line_total = 0
     for key in final_dictionary:
