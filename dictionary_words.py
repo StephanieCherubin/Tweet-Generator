@@ -7,10 +7,10 @@ def dictionary_words(num):
     pick random words
     return random words'''
 
-    file_name = '/usr/share/dict/words'
+    file_name = 'twelve_years.txt'
 
     with open(file_name) as file:
-        words_list =[line.strip() for line in file] 
+        words_list = file.read().split(" ")
     
     output = ' '.join(random.sample(words_list, num)) + '.'
 
