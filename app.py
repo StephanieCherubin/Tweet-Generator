@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def hello_world():
-    variable = dictionary_words(12)
+    variable = dictionary_words(50)
     return variable
 
     
