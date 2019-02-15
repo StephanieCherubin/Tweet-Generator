@@ -60,8 +60,8 @@ def list_of_lists():
 
 
 if __name__ == "__main__":
-    print(frequency(lines))
-    # print(dictogram())
-    # print(list_of_tuples())
-    # print(list_of_lists())
+    # print(frequency(lines))
+    print(dictogram())
+    print(list_of_tuples())
+    print(list_of_lists())
 

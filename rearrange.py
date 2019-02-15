@@ -1,6 +1,7 @@
 import random, sys
 
 def rearrange():
+    '''Takes user input words from terminal and rearranges them while shuffling 1000 times.'''
     words_from_terminal = sys.argv[1:]
     counter = 1000
     while counter > 0:
