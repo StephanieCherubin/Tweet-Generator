@@ -26,10 +26,10 @@ def list_of_tuples():
     for word in lines:
         found = False 
 
-        for inner_list in list_of_tuples:
-            if word == inner_list[0]:
-                count = inner_list[1] + 1
-                list_of_tuples.remove(inner_list)
+        for inner_tuple in list_of_tuples:
+            if word == inner_tuple[0]:
+                count = inner_tuple[1] + 1
+                list_of_tuples.remove(inner_tuple)
                 list_of_tuples.append((word, count))
                 found = True
         
