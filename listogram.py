@@ -23,34 +23,38 @@ class Listogram(list):
         found = False
         for inner_tuple in self:
             if word == inner_tuple[0]:
-                count = inner_tuple[1] + 1
+                amount = inner_tuple[1] + count
                 self.remove(inner_tuple)
-                self.append((word, count))
+                self.append((word, amount))
                 found = True
                 break
         if not found:
             self.append((word, count))
             self.types += 1
-            self.tokens += count
+        self.tokens += count
             
     def frequency(self, word):
         """Return frequency count of given word, or 0 if word is not found."""
         # TODO: Retrieve word frequency count
-        found = False
-        if word in self:
-            return self[word]
-            found = True
-        else:
-            return 0
+        for inner_tuple in self:
+            if word == inner_tuple[0]:
+                return inner_tuple[1]
+        return 0
 
     def __contains__(self, word):
         """Return boolean indicating if given word is in this histogram."""
         # TODO: Check if word is in this histogram
 
+        for inner_tuple in self:
+            if word == inner_tuple[0]:
+                return True
+        return False
+
     def _index(self, target):
         """Return the index of entry containing given target word if found in
         this histogram, or None if target word is not found."""
         # TODO: Implement linear search to find index of entry with target word
+
 
 
 def print_histogram(word_list):
