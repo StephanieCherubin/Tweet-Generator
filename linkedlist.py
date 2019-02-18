@@ -66,6 +66,7 @@ class LinkedList(object):
         # TODO: Create new node to hold given item
         # TODO: Append node after tail, if it exists
         new_node = Node(item)
+        
         if self.tail is not None:
             self.tail.next = new_node
         else:
@@ -77,6 +78,13 @@ class LinkedList(object):
         TODO: Running time: O(???) Why and under what conditions?"""
         # TODO: Create new node to hold given item
         # TODO: Prepend node before head, if it exists
+        new_node = Node(item)
+
+        if self.head is not None:
+            self.head.next = new_node
+        else:
+            self.tail = new_node
+        self.head = new_node
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
