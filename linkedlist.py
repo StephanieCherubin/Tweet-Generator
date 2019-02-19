@@ -115,23 +115,34 @@ class LinkedList(object):
         node = self.head
         prev = None
 
+        # The linkedlist only has a single node
+        if self.head == self.tail and self.head.data == item: # check if the head node is the only node
+        # remove it, and set self.head to None, and self.tail to None
+            self.head = None
+            self.tail = None
+        
+        # The linkedlist has at least a head and a tail
         while node is not None : #while the head node exists
-            print('Node.data: {}'.format(node.data))
+            print('Head node exists: {}'.format(node.data))
 
+            # The data has been found
             if node.data == item: #if the data of the head node is the item
                 if prev is not None: #if previous node exists
+                    print('Previous is not None: {}'.format(node.data))
                     prev.next = node.next #set the previous node to the head node.next
                     node = node.next
                 else:
+                    print('There is no previous node: {}'.format(node.data))
                     self.head = node.next #head node is now moved to the next one.
                     node = node.next
+
+            # The data has not been found, so look at next node
             else:
-                print('Node.data: {}'.format(node.data))
+                print('2 Node.data: {}'.format(node.data))
                 prev = node
                 node = node.next
-                if node.next == None:
-                    node = None
-        raise ValueError('Item not found: {}'.format(item))
+
+                raise ValueError('Item not found: {}'.format(item))
 
 
 def test_linked_list():
@@ -162,22 +173,22 @@ def test_linked_list():
         print('length: {}'.format(singly_linked_list.length()))
 
 
-# class DoubleLinkedList:
-#     def __init__(self):
-#         self.head = None
-#         self.tail = None 
-#         return 
+class DoubleLinkedList:
+    def __init__(self):
+        self.head = None
+        self.tail = None 
+        return 
     
-#     def add_item(self, item):
-#         if self.head is None:
-#             self.head = item 
-#             item.prev = None 
-#             item.next = None 
-#             self.tail = item 
-#         else:
-#             self.tail.next = item 
-#             item.prev = self.tail 
-            # self.tail = item
+    def add_item(self, item):
+        if self.head is None:
+            self.head = item 
+            item.prev = None 
+            item.next = None 
+            self.tail = item 
+        else:
+            self.tail.next = item 
+            item.prev = self.tail 
+            self.tail = item
 
 if __name__ == '__main__':
     test_linked_list()
