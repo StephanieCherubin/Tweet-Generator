@@ -68,7 +68,7 @@ class LinkedList(object):
         new_node = Node(item)
         # TODO: Append node after tail, if it exists
         
-        if self.tail:  # if there is a tail node   
+        if self.tail is not None:  # if there is a tail node   
             self.tail.next = new_node # add the new node after the tail node (last node)
         else: #tail contains no data
             self.head = new_node #make the new node the head because the test says so
@@ -94,13 +94,13 @@ class LinkedList(object):
         TODO: Worst case running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes to find item where quality(item) is True
         # TODO: Check if node's data satisfies given quality function
-        current_node = self.head
+        node_node = self.head
 
-        while current_node is not None:
-            if quality(current_node.data):
-                return current_node.data
+        while node_node is not None:
+            if quality(node_node.data):
+                return node_node.data
             else:
-                current_node = current_node.next
+                node_node = node_node.next
         return None
 
 
@@ -115,63 +115,69 @@ class LinkedList(object):
         node = self.head
         prev = None
 
-        while node:
-            if node.data == item:
-                if prev:
-                    prev.next = node.next 
-                else:
-                    self.head = node.next
-                    return
-            prev = node 
-            node = node.next 
+        while node is not None : #while the head node exists
+            print('Node.data: {}'.format(node.data))
 
+            if node.data == item: #if the data of the head node is the item
+                if prev is not None: #if previous node exists
+                    prev.next = node.next #set the previous node to the head node.next
+                    node = node.next
+                else:
+                    self.head = node.next #head node is now moved to the next one.
+                    node = node.next
+            else:
+                print('Node.data: {}'.format(node.data))
+                prev = node
+                node = node.next
+                if node.next == None:
+                    node = None
         raise ValueError('Item not found: {}'.format(item))
 
 
-    def test_linked_list():
-        ll = LinkedList()
-        print('list: {}'.format(ll))
+def test_linked_list():
+    singly_linked_list = LinkedList()
+    print('list: {}'.format(singly_linked_list))
 
-        print('\nTesting append:')
-        for item in ['A', 'B', 'C']:
-            print('append({!r})'.format(item))
-            ll.append(item)
-            print('list: {}'.format(ll))
+    print('\nTesting append:')
+    for item in ['A', 'B', 'C']:
+        print('append({!r})'.format(item))
+        singly_linked_list.append(item)
+        print('list: {}'.format(singly_linked_list))
 
-        print('head: {}'.format(ll.head))
-        print('tail: {}'.format(ll.tail))
-        print('length: {}'.format(ll.length()))
+    print('head: {}'.format(singly_linked_list.head))
+    print('tail: {}'.format(singly_linked_list.tail))
+    print('length: {}'.format(singly_linked_list.length()))
 
         # Enable this after implementing delete method
-        delete_implemented = False
-        if delete_implemented:
-            print('\nTesting delete:')
-            for item in ['B', 'C', 'A']:
-                print('delete({!r})'.format(item))
-                ll.delete(item)
-                print('list: {}'.format(ll))
+    delete_implemented = True
+    if delete_implemented:
+        print('\nTesting delete:')
+        for item in ['B', 'C', 'A']:
+            print('delete({!r})'.format(item))
+            singly_linked_list.delete(item)
+            print('list: {}'.format(singly_linked_list))
 
-            print('head: {}'.format(ll.head))
-            print('tail: {}'.format(ll.tail))
-            print('length: {}'.format(ll.length()))
+        print('head: {}'.format(singly_linked_list.head))
+        print('tail: {}'.format(singly_linked_list.tail))
+        print('length: {}'.format(singly_linked_list.length()))
 
 
-class DoubleLinkedList:
-    def __init__(self):
-        self.head = None
-        self.tail = None 
-        return 
+# class DoubleLinkedList:
+#     def __init__(self):
+#         self.head = None
+#         self.tail = None 
+#         return 
     
-    def add_item(self, item):
-        if self.head is None:
-            self.head = item 
-            item.prev = None 
-            item.next = None 
-            self.tail = item 
-        else:
-            self.tail.next = item 
-            item.prev = self.tail 
-            self.tail = item
+#     def add_item(self, item):
+#         if self.head is None:
+#             self.head = item 
+#             item.prev = None 
+#             item.next = None 
+#             self.tail = item 
+#         else:
+#             self.tail.next = item 
+#             item.prev = self.tail 
+            # self.tail = item
 
 if __name__ == '__main__':
     test_linked_list()
