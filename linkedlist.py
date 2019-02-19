@@ -136,8 +136,8 @@ class LinkedList(object):
                     self.head = node.next #head node is now moved to the next one.
                     node = node.next
 
-            # The data has not been found, so look at next node
-            else:
+            
+            else: # The data has not been found, so look at next node
                 print('2 Node.data: {}'.format(node.data))
                 prev = node
                 node = node.next
