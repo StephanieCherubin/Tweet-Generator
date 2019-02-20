@@ -88,21 +88,36 @@ class LinkedList(object):
             new_node.next = self.head
         self.head = new_node
 
+
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
         TODO: Best case running time: O(???) Why and under what conditions?
         TODO: Worst case running time: O(???) Why and under what conditions?"""
         # TODO: Loop through all nodes to find item where quality(item) is True
         # TODO: Check if node's data satisfies given quality function
-        node_node = self.head
-
-        while node_node is not None:
-            if quality(node_node.data):
-                return node_node.data
+        node = self.head
+    
+        while node is not None:
+            if quality(node.data): # quality is a function that needs to be called if True
+                return node.data
             else:
-                node_node = node_node.next
-        return None
+                node = node.next
+        return None 
 
+    def replace(self, word, replacement):
+        """Replace method deletes an existing item and replaces it with a new item,
+        without creating a new node."""
+        # Loop through all nodes. If the (node.data) == word, replace with replacement
+        # (node.data) = replacement
+        node = self.head
+        replacement = None
+
+        while node is not None: # check if head exists
+            if node.data == word:
+                node.data = replacement
+            else:
+                node = node.next
+        
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
@@ -126,38 +141,46 @@ class LinkedList(object):
             print('Head node exists: {}'.format(node.data))
 
             # The data has been found
-            if node.data == item: #if the data of the head node is the item
-                if prev is not None: #if previous node exists
-                    print('Previous is not None: {}'.format(node.data))
-                    prev.next = node.next #set the previous node to the head node.next
-                    node = node.next
-                else:
-                    print('There is no previous node: {}'.format(node.data))
-                    self.head = node.next #head node is now moved to the next one.
+            if node.data == item: # if the data of the head node is the item
+                if self.head.data == item: # if head is the same as the data
+                    print('There is no previous node. {}: is the current and first node'.format(node.data))
+                    prev = node
+                    # prev.next = node.next #set the previous node to the head node.next
                     node = node.next
 
+
+                elif self.tail.data == item:
+                    print('Current node is in tail: {}'.format(node.data))
+                    node = self.tail
+                    node.next = None
+
+                else: # item is found in middle of ll
+                    print('Current Node is in the middle of linked list: {}'.format(node.data))
+                    # self.head = node.next #head node is now moved to the next one.
+                    # node = node.next
+                return
             
             else: # The data has not been found, so look at next node
-                print('2 Node.data: {}'.format(node.data))
+                print('Data has not been found: {}'.format(node.data))
                 prev = node
                 node = node.next
 
-                raise ValueError('Item not found: {}'.format(item))
+        raise ValueError('Item not found: {}'.format(item))
 
 
 def test_linked_list():
-    singly_linked_list = LinkedList()
-    print('list: {}'.format(singly_linked_list))
+    ll = LinkedList()
+    print('list: {}'.format(ll))
 
     print('\nTesting append:')
     for item in ['A', 'B', 'C']:
         print('append({!r})'.format(item))
-        singly_linked_list.append(item)
-        print('list: {}'.format(singly_linked_list))
+        ll.append(item)
+        print('list: {}'.format(ll))
 
-    print('head: {}'.format(singly_linked_list.head))
-    print('tail: {}'.format(singly_linked_list.tail))
-    print('length: {}'.format(singly_linked_list.length()))
+    print('head: {}'.format(ll.head))
+    print('tail: {}'.format(ll.tail))
+    print('length: {}'.format(ll.length()))
 
         # Enable this after implementing delete method
     delete_implemented = True
@@ -165,12 +188,12 @@ def test_linked_list():
         print('\nTesting delete:')
         for item in ['B', 'C', 'A']:
             print('delete({!r})'.format(item))
-            singly_linked_list.delete(item)
-            print('list: {}'.format(singly_linked_list))
+            ll.delete(item)
+            print('list: {}'.format(ll))
 
-        print('head: {}'.format(singly_linked_list.head))
-        print('tail: {}'.format(singly_linked_list.tail))
-        print('length: {}'.format(singly_linked_list.length()))
+        print('head: {}'.format(ll.head))
+        print('tail: {}'.format(ll.tail))
+        print('length: {}'.format(ll.length()))
 
 
 class DoubleLinkedList:
