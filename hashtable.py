@@ -105,7 +105,14 @@ class HashTable(object):
 
         bucket.append(entry) #TODO: Otherwise, insert given key-value entry into bucket
 
-        
+        #update
+        # node = self.head
+
+        # while node is not None: # check if head exists
+        #     if node.data == word:
+        #         node.data = replacement
+        #     else:
+        #         node = node.next
 
 
     def delete(self, key):
