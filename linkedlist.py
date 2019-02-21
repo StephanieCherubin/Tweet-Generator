@@ -110,7 +110,6 @@ class LinkedList(object):
         # Loop through all nodes. If the (node.data) == word, replace with replacement
         # (node.data) = replacement
         node = self.head
-        replacement = None
 
         while node is not None: # check if head exists
             if node.data == word:
@@ -127,45 +126,41 @@ class LinkedList(object):
         # TODO: Update previous node to skip around node with matching data
         # TODO: Otherwise raise error to tell user that delete has failed
         # Hint: raise ValueError('Item not found: {}'.format(item))
+
         node = self.head
-        prev = None
-
-        # The linkedlist only has a single node
-        if self.head == self.tail and self.head.data == item: # check if the head node is the only node
-        # remove it, and set self.head to None, and self.tail to None
-            self.head = None
-            self.tail = None
+        previous_node = None
         
-        # The linkedlist has at least a head and a tail
+        #  The linkedlist only has a single node
+        if self.head == self.tail and self.head.data == item: # check if the head node is the only node
+        # # # remove it, and set self.head to None, and self.tail to None
+             self.head = None
+             self.tail = None
+        
+        # # The linkedlist has at least a head and a tail
         while node is not None : #while the head node exists
-            print('Head node exists: {}'.format(node.data))
 
-            # The data has been found
-            if node.data == item: # if the data of the head node is the item
-                if self.head.data == item: # if head is the same as the data
-                    print('There is no previous node. {}: is the current and first node'.format(node.data))
-                    prev = node
-                    # prev.next = node.next #set the previous node to the head node.next
+        #     # The data has been found
+            if node.data == item: # if the data of the head node is the item # remove this duplicate
+                if self.head.data == item: # if head is the same as the data 
                     node = node.next
-
+                    self.head = node
 
                 elif self.tail.data == item:
-                    print('Current node is in tail: {}'.format(node.data))
                     node = self.tail
-                    node.next = None
+                    node = prev
+                    self.tail = node
+                    self.tail.next = None
 
                 else: # item is found in middle of ll
-                    print('Current Node is in the middle of linked list: {}'.format(node.data))
-                    # self.head = node.next #head node is now moved to the next one.
-                    # node = node.next
+                    prev = node.next
                 return
             
             else: # The data has not been found, so look at next node
-                print('Data has not been found: {}'.format(node.data))
                 prev = node
                 node = node.next
 
         raise ValueError('Item not found: {}'.format(item))
+
 
 
 def test_linked_list():
