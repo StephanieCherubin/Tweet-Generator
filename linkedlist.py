@@ -129,37 +129,36 @@ class LinkedList(object):
 
         node = self.head
         previous_node = None
+        found = False
         
         #  The linkedlist only has a single node
-        if self.head == self.tail and self.head.data == item: # check if the head node is the only node
-        # # # remove it, and set self.head to None, and self.tail to None
+        if self.head == self.tail: # check if the head node is the only node
+        # remove it, and set self.head to None, and self.tail to None
              self.head = None
              self.tail = None
         
-        # # The linkedlist has at least a head and a tail
+        # The linkedlist has at least a head and a tail
         while node is not None : #while the head node exists
 
-        #     # The data has been found
+         # The data has been found
             if node.data == item: # if the data of the head node is the item # remove this duplicate
-                if self.head.data == item: # if head is the same as the data 
-                    node = node.next
-                    self.head = node
+                if previous_node is not None: # if head is the same as the data 
+                    previous_node.next = node.next
+                    found = True
 
-                elif self.tail.data == item:
-                    node = self.tail
-                    node = prev
-                    self.tail = node
-                    self.tail.next = None
+                elif previous_node is None:
+                    self.head = node.next
+                    found = True
 
-                else: # item is found in middle of ll
-                    prev = node.next
-                return
+                if node.next == None: # item is found in middle of ll
+                    self.tail = previous_node
+                break
             
             else: # The data has not been found, so look at next node
-                prev = node
+                previous_node = node
                 node = node.next
-
-        raise ValueError('Item not found: {}'.format(item))
+        if not found:
+            raise ValueError('Item not found: {}'.format(item))
 
 
 
