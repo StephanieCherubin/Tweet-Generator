@@ -101,32 +101,35 @@ class HashTable(object):
         # TODO: Check if key-value entry exists in bucket
         entry = bucket.find(lambda key_value: key_value[0] == key) # If found, return value associated with given key
 
-        entry = (key, value) #If found, update value associated with given key
+        entry = (key, value) #If not found, update value associated with given key
 
         bucket.append(entry) #TODO: Otherwise, insert given key-value entry into bucket
 
-        #update
-        # node = self.head
+        
+        
+        new_entry = (key, value) #create a new entry
+        
+        # use previous key as entry[0]
+        # value is new value
 
-        # while node is not None: # check if head exists
-        #     if node.data == word:
-        #         node.data = replacement
-        #     else:
-        #         node = node.next
+        # lambda function to return node
+        # delete it 
 
+# update key or set key if not there
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
         TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Find bucket where given key belongs
-        # index = self._bucket_index(key)
-        # bucket = self.buckets(index)
-        # TODO: Check if key-value entry exists in bucket
-        # TODO: If found, delete entry associated with given key
-        # TODO: Otherwise, raise error to tell user delete failed
-        # Hint: raise KeyError('Key not found: {}'.format(key))
+        # Find bucket where given key belongs
+        index = self._bucket_index(key)
+        bucket = self.buckets[index]
+        # Check if key-value entry exists in bucket
+        entry = bucket.find(lambda key_value: key_value[0] == key)
 
-
+        if entry: #If found,
+            bucket.delete(entry) #delete entry associated with given key
+        else: #Otherwise
+            raise KeyError('Key not found: {}'.format(key)) # raise error to tell user delete failed
 
 def test_hash_table():
     ht = HashTable()
