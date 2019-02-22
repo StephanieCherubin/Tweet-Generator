@@ -141,16 +141,16 @@ class LinkedList(object):
         while node is not None : #while the head node exists
 
          # The data has been found
-            if node.data == item: # if the data of the head node is the item # remove this duplicate
-                if previous_node is not None: # if head is the same as the data 
+            if node.data == item: 
+                if previous_node is not None: #
                     previous_node.next = node.next
                     found = True
 
-                elif previous_node is None:
+                else: #head_node
                     self.head = node.next
                     found = True
 
-                if node.next == None: # item is found in middle of ll
+                if node.next == None: #tail
                     self.tail = previous_node
                 break
             
