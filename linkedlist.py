@@ -4,6 +4,7 @@ class Node(object):
         """Initialize this node with the given data."""
         self.data = data
         self.next = None
+        self.count = 0
 
     def __repr__(self):
         """Return a string representation of this node."""
@@ -17,10 +18,10 @@ class LinkedList(object):
         self.head = None  # First node
         self.tail = None  # Last node
 
-        # Append given items
-        if items is not None:
+        
+        if items:
             for item in items:
-                self.append(item)
+                self.append(item) # Append given items
 
     def __str__(self):
         """Return a formatted string representation of this linked list."""
@@ -42,33 +43,37 @@ class LinkedList(object):
         while node is not None:  # Always n iterations because no early return
             items.append(node.data)  # O(1) time (on average) to append to list
             # Skip to next node to advance forward in linked list
-            node = node.next  # O(1) time to reassign variable
+            node = node.next  # O(1) time (constant time) to reassign variable
         # Now list contains items from all nodes
-        return items  # O(1) time to return list
+        return items  # O(1) time (constant time)to return list
 
     def is_empty(self):
-        """Return a boolean indicating whether this linked list is empty."""
-        return self.head is None
+        """Return a boolean indicating whether this linked list is empty.
+        ODO: Running time: O(1)"""
+
+        return self.head is None #
 
     def length(self):
         """Return the length of this linked list by traversing its nodes.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Loop through all nodes and count one for each
+        TODO: Running time: O(n) Because we have to iterate through all nodes and count 1 for each"""
+       
         length = 0
         node = self.head
-        while node is not None:
-            length += 1
+
+        while node is not None: #Loop through all nodes
+            length += 1  # and count one for each
             node = node.next
         return length
+        # return self.length
 
     def append(self, item):
         """Insert the given item at the tail of this linked list.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Create new node to hold given item
-        new_node = Node(item)
-        # TODO: Append node after tail, if it exists
+        Running time: O(1)
+        Because the tail node is the only node changed and there is no loop."""
         
-        if self.tail is not None:  # if there is a tail node   
+        new_node = Node(item) # Create new node to hold given item
+        
+        if self.tail:  # if there is a tail node   
             self.tail.next = new_node # add the new node after the tail node (last node)
         else: #tail contains no data
             self.head = new_node #make the new node the head because the test says so
@@ -77,9 +82,10 @@ class LinkedList(object):
 
     def prepend(self, item):
         """Insert the given item at the head of this linked list.
-        TODO: Running time: O(???) Why and under what conditions?"""
-        # TODO: Create new node to hold given item
-        new_node = Node(item)
+        Running time: O(1) 
+        Because we only change the first node and there is no loop."""
+        
+        new_node = Node(item) # Create new node to hold given item
         # TODO: Prepend node before head, if it exists
 
         if self.is_empty():
@@ -91,14 +97,15 @@ class LinkedList(object):
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
-        TODO: Best case running time: O(???) Why and under what conditions?
-        TODO: Worst case running time: O(???) Why and under what conditions?"""
-        # TODO: Loop through all nodes to find item where quality(item) is True
-        # TODO: Check if node's data satisfies given quality function
+        TODO: Best case running time: O(1) If the item is near the head of the list
+        TODO: Worst case running time: O(n) If the item is near the tail of the list"""
+        
+        
         node = self.head
     
-        while node is not None:
+        while node is not None: # Loop through all nodes to find item where quality(item) is True
             if quality(node.data): # quality is a function that needs to be called if True
+                #Check if node's data satisfies given quality function
                 return node.data
             else:
                 node = node.next
