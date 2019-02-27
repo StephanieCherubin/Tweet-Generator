@@ -1,4 +1,5 @@
 from linkedlist import LinkedList
+import time
 
 
 class HashTable(object):
@@ -46,6 +47,7 @@ class HashTable(object):
                 all_values.append(value)
         return all_values
 
+ 
     def items(self):
         """Return a list of all items (key-value pairs) in this hash table.
         TODO: Running time: O(???) Why and under what conditions?"""
@@ -97,11 +99,11 @@ class HashTable(object):
         
 
     def set(self, key, value):
-        """Insert or update the given key with its associated value.
+        """Insert or update the given key with its associated value. 
         Running time: O(n) Why and under what conditions?"""
         index = self._bucket_index(key)
         bucket = self.buckets[index]
-        # #  Check if key-value entry exists in bucket
+        #  Check if key-value entry exists in bucket
         entry = bucket.find(lambda key_value: key_value[0] == key) # If found, return value associated with given key
 
         #entry = (key, value) #If not found, update value associated with given key
@@ -110,9 +112,7 @@ class HashTable(object):
             self.count -= 1
         bucket.append((key, value))
         self.count += 1 # Otherwise, insert given key-value entry into bucket
- 
-
-# update key or set key if not there
+        # update key or set key if not there
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.

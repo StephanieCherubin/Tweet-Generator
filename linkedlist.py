@@ -34,7 +34,7 @@ class LinkedList(object):
 
     def items(self):
         """Return a list (dynamic array) of all items in this linked list.
-        Best and worst case running time: O(n) for n items in the list (length)
+        Best and worst case running time: O(1) for n items in the list (length)
         because we always need to loop through all n nodes to get each item."""
         items = []  # O(1) time to create empty list
         # Start at head node
@@ -49,7 +49,7 @@ class LinkedList(object):
 
     def is_empty(self):
         """Return a boolean indicating whether this linked list is empty.
-        ODO: Running time: O(1)"""
+        Running time: O(1)"""
 
         return self.head is None #
 
@@ -97,8 +97,8 @@ class LinkedList(object):
 
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
-        TODO: Best case running time: O(1) If the item is near the head of the list
-        TODO: Worst case running time: O(n) If the item is near the tail of the list"""
+        Best case running time: O(1) If the item is near the head of the list
+        Worst case running time: O(n) If the item is near the tail of the list"""
         
         
         node = self.head
@@ -127,12 +127,11 @@ class LinkedList(object):
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
-        TODO: Best case running time: O(???) Why and under what conditions?
-        TODO: Worst case running time: O(???) Why and under what conditions?"""
+        TODO: Best case running time: O(1) Why and under what conditions?
+        TODO: Worst case running time: O(n) Why and under what conditions?"""
         # TODO: Loop through all nodes to find one whose data matches given item
         # TODO: Update previous node to skip around node with matching data
-        # TODO: Otherwise raise error to tell user that delete has failed
-        # Hint: raise ValueError('Item not found: {}'.format(item))
+
 
         node = self.head
         previous_node = None
@@ -145,7 +144,7 @@ class LinkedList(object):
              self.tail = None
         
         # The linkedlist has at least a head and a tail
-        while node is not None : #while the head node exists
+        while node: #while the head node exists
 
          # The data has been found
             if node.data == item: 
@@ -164,7 +163,7 @@ class LinkedList(object):
             else: # The data has not been found, so look at next node
                 previous_node = node
                 node = node.next
-        if not found:
+        if not found: #Otherwise raise error to tell user that delete has failed
             raise ValueError('Item not found: {}'.format(item))
 
 
