@@ -7,6 +7,7 @@ class HashTable(object):
         """Initialize this hash table with the given initial size."""
         # Create a new list (used as fixed-size array) of empty linked lists
         self.buckets = [LinkedList() for _ in range(init_size)]
+        self.count = 0
 
     def __str__(self):
         """Return a formatted string representation of this hash table."""
@@ -68,7 +69,7 @@ class HashTable(object):
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(1) Why and under what conditions?"""
         # Find bucket where given key belongs
         index = self._bucket_index(key)
         bucket = self.buckets[index]
@@ -97,28 +98,19 @@ class HashTable(object):
 
     def set(self, key, value):
         """Insert or update the given key with its associated value.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        Running time: O(n) Why and under what conditions?"""
         index = self._bucket_index(key)
         bucket = self.buckets[index]
-        #  Check if key-value entry exists in bucket
+        # #  Check if key-value entry exists in bucket
         entry = bucket.find(lambda key_value: key_value[0] == key) # If found, return value associated with given key
 
-        entry = (key, value) #If not found, update value associated with given key
-
-        bucket.append(entry) # Otherwise, insert given key-value entry into bucket
-
-        
-        
-        new_entry = (key, value) #create a new entry
-        
-        # use previous key as entry[0]
-        # value is new value
-
-        # lambda function to return node
-        # delete it 
-        # if entry:
-        #     bucket.append(entry)
-
+        #entry = (key, value) #If not found, update value associated with given key
+        if entry:
+            bucket.delete(entry)
+            self.count -= 1
+        bucket.append((key, value))
+        self.count += 1 # Otherwise, insert given key-value entry into bucket
+ 
 
 # update key or set key if not there
 
