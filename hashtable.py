@@ -87,31 +87,38 @@ class HashTable(object):
     def get(self, key):
         """Return the value associated with the given key, or raise KeyError.
         TODO: Running time: O(???) Why and under what conditions?"""
-        index = self._bucket_index(key) #Check if key-value entry exists in bucket
-        bucket = self.buckets[index]
+        index = self._bucket_index(key)  # O(1) to calculate index
+        bucket = self.buckets[index]  # O(1) to index an array
         
-        entry = bucket.find(lambda key_value: key_value[0] == key) # If found, return value associated with given key
+        def key_matcher(key_value):  # this function definition is a closure
+            return (key_value[0] == key)  # just return the condition
+
+        #Check if key-value entry exists in bucket
+        entry = bucket.find(key_matcher)  # O(l) with l = bucket.length()
+        # If found, return value associated with given key
         
-        if entry: # found!
-            return entry[1]
+        if entry is not None: # found!
+            return entry[1]  # entry = (key, value)
         else: #Otherwise, raise error to tell user get failed
             raise KeyError('Key not found: {}'.format(key))
-        
+    
 
     def set(self, key, value):
         """Insert or update the given key with its associated value. 
-        Running time: O(n) Why and under what conditions?"""
+        Running time: O(l) where l is the length of the linked list"""
         index = self._bucket_index(key)
         bucket = self.buckets[index]
         #  Check if key-value entry exists in bucket
-        entry = bucket.find(lambda key_value: key_value[0] == key) # If found, return value associated with given key
+        entry = bucket.find(lambda key_value: key_value[0] == key) 
 
-        #entry = (key, value) #If not found, update value associated with given key
-        if entry:
-            bucket.delete(entry)
-            self.count -= 1
-        bucket.append((key, value))
-        self.count += 1 # Otherwise, insert given key-value entry into bucket
+        #If not found, update value associated with given key
+        if entry: #entry = (key, value)
+            # If found, return value associated with given key
+            bucket.delete(entry) #O(l) where is the length of the linked list
+            # self.count -= 1
+
+        bucket.append((key, value)) #O(1)
+        # self.count += 1 # Otherwise, insert given key-value entry into bucket
         # update key or set key if not there
 
     def delete(self, key):
@@ -123,7 +130,7 @@ class HashTable(object):
         # Check if key-value entry exists in bucket
         entry = bucket.find(lambda key_value: key_value[0] == key)
 
-        if entry: #If found,
+        if entry: #If found
             bucket.delete(entry) #delete entry associated with given key
         else: #Otherwise
             raise KeyError('Key not found: {}'.format(key)) # raise error to tell user delete failed

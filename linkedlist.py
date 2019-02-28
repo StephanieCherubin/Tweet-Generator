@@ -98,7 +98,8 @@ class LinkedList(object):
     def find(self, quality):
         """Return an item from this linked list satisfying the given quality.
         Best case running time: O(1) If the item is near the head of the list
-        Worst case running time: O(n) If the item is near the tail of the list"""
+        Worst case running time: O(n) If the item is near the tail of the list
+        where n = length of this linked list (number of items it stores)"""
         
         
         node = self.head
@@ -114,11 +115,10 @@ class LinkedList(object):
     def replace(self, word, replacement):
         """Replace method deletes an existing item and replaces it with a new item,
         without creating a new node."""
-        # Loop through all nodes. If the (node.data) == word, replace with replacement
-        # (node.data) = replacement
+        
         node = self.head
-
-        while node is not None: # check if head exists
+        # Loop through all nodes. If the (node.data) == word, replace with replacement
+        while node: # check if head exists
             if node.data == word:
                 node.data = replacement
             else:
