@@ -132,6 +132,7 @@ class HashTable(object):
 
         if entry: #If found
             bucket.delete(entry) #delete entry associated with given key
+            # self.count -= 1
         else: #Otherwise
             raise KeyError('Key not found: {}'.format(key)) # raise error to tell user delete failed
 
