@@ -26,7 +26,7 @@ class HashTable(object):
 
     def keys(self):
         """Return a list of all keys in this hash table.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        Running time: O(n) Why and under what conditions?"""
         # Collect all keys in each bucket
         all_keys = []
 
@@ -76,6 +76,7 @@ class HashTable(object):
         bucket = self.buckets[index]
         # Check if key-value entry exists in bucket
         entry = bucket.find(lambda key_value: key_value[0] == key)
+        # Find method on linked_list is worst case: O(l)
 
         if entry:
             return True
@@ -108,7 +109,7 @@ class HashTable(object):
         index = self._bucket_index(key)
         bucket = self.buckets[index]
         #  Check if key-value entry exists in bucket
-        entry = bucket.find(lambda key_value: key_value[0] == key) 
+        entry = bucket.find(lambda key_value: key_value[0] == key) # O(l) with l = bucket.length()
 
         #If not found, update value associated with given key
         if entry: #entry = (key, value)
