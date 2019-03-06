@@ -18,7 +18,7 @@ def randomized_item(my_dict):
 randomized_item(final_dictionary)
 
 
-def probabilistic_word_sampler():
+def probabilistic_word_sampler(final_dictionary):
     '''Sample words based on probablity. Run random function on list'''
     total = 0
     for key in final_dictionary:
