@@ -55,7 +55,7 @@ class LinkedList(object):
 
     def length(self):
         """Return the length of this linked list by traversing its nodes.
-        TODO: Running time: O(n) Because we have to iterate through all nodes and count 1 for each"""
+        Running time: O(n) Because we have to iterate through all nodes and count 1 for each"""
        
         length = 0
         node = self.head
@@ -148,7 +148,7 @@ class LinkedList(object):
 
          # The data has been found
             if node.data == item: 
-                if previous_node is not None: #
+                if previous_node: 
                     previous_node.next = node.next
                     found = True
 

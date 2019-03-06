@@ -1,7 +1,7 @@
 from linkedlist import LinkedList
 import time
 
-
+#In hash tables, use l instead of n when speaking out big O notation
 class HashTable(object):
 
     def __init__(self, init_size=8):
@@ -60,18 +60,17 @@ class HashTable(object):
 
     def length(self):
         """Return the number of key-value entries by traversing its buckets.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        TODO: Running time: O(b * l) or O(n) because it has to iterate through all bucket and count 1 for each"""
        
-        length = 0
+        count = 0
 
-        for bucket in self.buckets:  # Loop through all buckets
-           for key, value in bucket.items():
-                length += 1  # Count number of key-value entries in each bucket
-        return length
+        for bucket in self.buckets:  # Loop through all buckets #b iterations
+            count += bucket.length()  # Count number of key-value entries in each bucket #O(l)
+        return count
 
     def contains(self, key):
         """Return True if this hash table contains the given key, or False.
-        TODO: Running time: O(1) Why and under what conditions?"""
+        Running time: O(1) Why and under what conditions?"""
         # Find bucket where given key belongs
         index = self._bucket_index(key)
         bucket = self.buckets[index]
@@ -115,24 +114,28 @@ class HashTable(object):
         if entry: #entry = (key, value)
             # If found, return value associated with given key
             bucket.delete(entry) #O(l) where is the length of the linked list
-            # self.count -= 1
+            self.count -= 1
 
         bucket.append((key, value)) #O(1)
-        # self.count += 1 # Otherwise, insert given key-value entry into bucket
+        self.count += 1 # Otherwise, insert given key-value entry into bucket
         # update key or set key if not there
 
     def delete(self, key):
         """Delete the given key from this hash table, or raise KeyError.
-        TODO: Running time: O(???) Why and under what conditions?"""
+        Running time: O(3 + 2(l)) Why and under what conditions?"""
         # Find bucket where given key belongs
-        index = self._bucket_index(key)
+        index = self._bucket_index(key) # O(1)
         bucket = self.buckets[index]
+        # bucket is linked_list
         # Check if key-value entry exists in bucket
         entry = bucket.find(lambda key_value: key_value[0] == key)
+        # Find method on linked_list is worst case: O(l)
 
         if entry: #If found
             bucket.delete(entry) #delete entry associated with given key
-            # self.count -= 1
+            # The delete method above is from linked_list class
+            # O(l)
+            self.count -= 1 #O(1)
         else: #Otherwise
             raise KeyError('Key not found: {}'.format(key)) # raise error to tell user delete failed
 
