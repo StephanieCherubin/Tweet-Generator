@@ -1,9 +1,7 @@
 from dictogram import Dictogram
-from random import choice
-import sys
 from stochastic_sampling import probabilistic_word_sampler
+import random
 
-# corpus_list = ['one', 'fish', 'two', 'fish', 'red', 'fish', 'blue', 'fish']
 
 def markov_model(corpus_list):
     dictionary = {}
@@ -18,26 +16,33 @@ def markov_model(corpus_list):
     return dictionary
 
 
-def next_word(dictionary, word):
+def get_next_word(dictionary, word):
     # get the next word based on current word using the dictionary
     inner_dictionary = dictionary[word]  
-    choice = probabilistic_word_sampler(inner_dictionary)
-    return choice
+    random_word_from_dictionary = probabilistic_word_sampler(inner_dictionary)
+    return random_word_from_dictionary
 
 
-# def nextWord(dictionary, word):
-#     words = []
-#     for index in dictionary[word].keys():
-#         for _ in range(dictionary[word][index]):
-#             words.append(index)
-#     return choice(words)
+def generate_sentences(dictionary):
+    # get the first word by indexing the array (sentence)
 
-# get the first word by indexing the array (sentence)
+    first_word = dictionary.keys()[0]
+    # second_word = dictionary.keys()[1]
+    second_word = get_next_word(dictionary, first_word)
+    phrase = first_word + ' ' + second_word + ' '
 
-def generateSentences(parameter_list):
-    pass
+    previous_word = second_word
+
+    for word in range(0, random.randint(1,101)):
+        new_word = get_next_word(dictionary, previous_word)
+        # update previous word
+        previous_word = new_word
+        phrase += new_word + ' '
+    return phrase
+
 
 if __name__ == "__main__":
     print(markov_model(['one', 'fish', 'two', 'fish', 'red', 'fish', 'blue', 'fish']))
     return_dict = markov_model(['one', 'fish', 'two', 'fish', 'red', 'fish', 'blue', 'fish'])
-    print(next_word(return_dict, 'fish'))
+    print(get_next_word(return_dict, 'fish'))
+    print(generate_sentences(return_dict))
