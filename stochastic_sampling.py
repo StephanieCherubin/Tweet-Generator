@@ -7,13 +7,13 @@ with open("dr-seuss.txt","r") as f:
     total_word_count = len(lines)
 
     final_dictionary = frequency(lines)
-    print('Final Dictionary: {}\n'.format(final_dictionary))
+    # print('Final Dictionary: {}\n'.format(final_dictionary))
 
 def randomized_item(my_dict):
-    print('Percentage Count: ')
+    # print('Percentage Count: ')
     for key, value in my_dict.items():
         probability = float(value) / total_word_count
-        print('{} => {}'.format(key, probability))
+        # print('{} => {}'.format(key, probability))
 
 randomized_item(final_dictionary)
 

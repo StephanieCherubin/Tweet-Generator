@@ -34,7 +34,7 @@ class LinkedList(object):
 
     def items(self):
         """Return a list (dynamic array) of all items in this linked list.
-        Best and worst case running time: O(1) for n items in the list (length)
+        Best and worst case running time: O(n) for n items in the list (length)
         because we always need to loop through all n nodes to get each item."""
         items = []  # O(1) time to create empty list
         # Start at head node
@@ -100,7 +100,6 @@ class LinkedList(object):
         Best case running time: O(1) If the item is near the head of the list
         Worst case running time: O(n) If the item is near the tail of the list
         where n = length of this linked list (number of items it stores)"""
-        
         
         node = self.head
     
