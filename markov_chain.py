@@ -71,7 +71,7 @@ def generate_second_order_sentences(dictionary):
 
     # loop while the last word is not stop token,
     # if it is the stop token, break loop
-    for word in range(0, random.randint(1,101)):
+    for word in range(random.randint(1,101)):
         new_word = get_next_word(dictionary, previous_word)
         # update previous word
         previous_word = new_word
