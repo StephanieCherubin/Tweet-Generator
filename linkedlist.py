@@ -103,7 +103,7 @@ class LinkedList(object):
         
         node = self.head
     
-        while node is not None: # Loop through all nodes to find item where quality(item) is True
+        while node: # Loop through all nodes to find item where quality(item) is True
             if quality(node.data): # quality is a function that needs to be called if True
                 #Check if node's data satisfies given quality function
                 return node.data
@@ -126,16 +126,17 @@ class LinkedList(object):
 
     def delete(self, item):
         """Delete the given item from this linked list, or raise ValueError.
-        TODO: Best case running time: O(1) Why and under what conditions?
-        TODO: Worst case running time: O(n) Why and under what conditions?"""
-        # TODO: Loop through all nodes to find one whose data matches given item
-        # TODO: Update previous node to skip around node with matching data
+        Best case running time: O(1) Why and under what conditions?
+        Worst case running time: O(n) Why and under what conditions?"""
+        #  Loop through all nodes to find one whose data matches given item
+        # Update previous node to skip around node with matching data
 
 
         node = self.head
         previous_node = None
         found = False
         
+        # These steps below are optional if linkedlist has only a single node.
         #  The linkedlist only has a single node
         if self.head == self.tail: # check if the head node is the only node
         # remove it, and set self.head to None, and self.tail to None
@@ -149,11 +150,10 @@ class LinkedList(object):
             if node.data == item: 
                 if previous_node: 
                     previous_node.next = node.next
-                    found = True
 
                 else: #head_node
                     self.head = node.next
-                    found = True
+                found = True
 
                 if node.next == None: #tail
                     self.tail = previous_node
@@ -164,7 +164,6 @@ class LinkedList(object):
                 node = node.next
         if not found: #Otherwise raise error to tell user that delete has failed
             raise ValueError('Item not found: {}'.format(item))
-
 
 
 def test_linked_list():
