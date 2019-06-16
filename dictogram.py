@@ -1,5 +1,3 @@
-#!python
-
 from __future__ import division, print_function  # Python 2 and 3 compatibility
 
 
@@ -31,7 +29,6 @@ class Dictogram(dict):
 
     def frequency(self, word):
         """Return frequency count of given word, or 0 if word is not found."""
-        # TODO: Retrieve word frequency count
         if word in self:
             return self[word]
         else:

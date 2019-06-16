@@ -86,7 +86,6 @@ class LinkedList(object):
         Because we only change the first node and there is no loop."""
         
         new_node = Node(item) # Create new node to hold given item
-        # TODO: Prepend node before head, if it exists
 
         if self.is_empty():
             self.tail = new_node
