@@ -78,6 +78,7 @@ class LinkedList(object):
         else: #tail contains no data
             self.head = new_node #make the new node the head because the test says so
         self.tail = new_node #in any case, the new node will be the last node
+        self.size += 1
 
 
     def prepend(self, item):
