@@ -8,7 +8,7 @@ class HashTable(object):
         """Initialize this hash table with the given initial size."""
         # Create a new list (used as fixed-size array) of empty linked lists
         self.buckets = [LinkedList() for _ in range(init_size)]
-        self.count = 0
+        self.size = 0
 
     def __str__(self):
         """Return a formatted string representation of this hash table."""
@@ -115,10 +115,10 @@ class HashTable(object):
         if entry: #entry = (key, value)
             # If found, return value associated with given key
             bucket.delete(entry) #O(l) where is the length of the linked list
-            self.count -= 1
+            self.size -= 1
 
         bucket.append((key, value)) #O(1)
-        self.count += 1 # Otherwise, insert given key-value entry into bucket
+        self.size += 1 # Otherwise, insert given key-value entry into bucket
         # update key or set key if not there
 
     def delete(self, key):
@@ -136,7 +136,7 @@ class HashTable(object):
             bucket.delete(entry) #delete entry associated with given key
             # The delete method above is from linked_list class
             # O(l)
-            self.count -= 1 #O(1)
+            self.size -= 1 #O(1)
         else: #Otherwise
             raise KeyError('Key not found: {}'.format(key)) # raise error to tell user delete failed
 
